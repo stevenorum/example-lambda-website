@@ -1,0 +1,30 @@
+version: 0.1
+phases:
+  install:
+    commands:
+      - yum install -y python36-devel
+      - pip3 install --upgrade pip
+#      - pip3 install --upgrade setuptools
+#      - pip3 install --upgrade wheel
+  pre_build:
+    commands:
+      - mkdir build
+      - cp -r src/* build/
+      - cp SamTemplate.yaml build/
+      - touch requirements.txt
+      - pip3 install -t build/ -r requirements.txt
+  build:
+    commands:
+      - cd build
+      - aws cloudformation package --template-file SamTemplate.yaml --s3-bucket $S3_BUCKET --output-template-file NewSamTemplate.yaml
+#  post_build:
+#    commands:
+#      - echo "I'm a command in the 'post_build' phase!"
+#  install:
+#    commands:
+#      - echo "Foo!"
+artifacts:
+  type: zip
+  files:
+    - build/NewSamTemplate.yaml
+  discard-paths: yes
