@@ -8,6 +8,7 @@ phases:
 #      - pip3 install --upgrade wheel
   pre_build:
     commands:
+      - pwd
       - mkdir build
       - cp -r src/* build/
       - cp SamTemplate.yml build/
@@ -15,12 +16,17 @@ phases:
       - pip3 install -t build/ -r requirements.txt
   build:
     commands:
+      - pwd
+      - ls -hAl
       - cd build
+      - pwd
+      - ls -hAl
       - aws cloudformation package --template-file SamTemplate.yml --s3-bucket $S3_BUCKET --output-template-file NewSamTemplate.yml
       - ls -hAl
+      - pwd
       - cd ..
+      - pwd
       - ls -hAl
-      - tree
       - cp build/NewSamTemplate.yml ./NewSamTemplate.yml
 #  post_build:
 #    commands:
