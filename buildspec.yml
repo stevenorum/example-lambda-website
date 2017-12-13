@@ -2,7 +2,7 @@ version: 0.1
 phases:
   install:
     commands:
-      - yum install -y python36-devel
+      - yum install -y python36-devel tree
       - pip3 install --upgrade pip
 #      - pip3 install --upgrade setuptools
 #      - pip3 install --upgrade wheel
@@ -17,7 +17,10 @@ phases:
     commands:
       - cd build
       - aws cloudformation package --template-file SamTemplate.yml --s3-bucket $S3_BUCKET --output-template-file NewSamTemplate.yml
+      - ls -hAl
       - cd ..
+      - ls -hAl
+      - tree
       - cp build/NewSamTemplate.yml ./NewSamTemplate.yml
 #  post_build:
 #    commands:
