@@ -16,18 +16,10 @@ phases:
       - pip3 install -t build/ -r requirements.txt
   build:
     commands:
-      - pwd
-      - ls -hAl
-      - cd build
-      - pwd
       - ls -hAl
       - aws cloudformation package --template-file SamTemplate.yml --s3-bucket $S3_BUCKET --output-template-file NewSamTemplate.yml
       - ls -hAl
-      - pwd
-      - cd ..
-      - pwd
-      - ls -hAl
-      - cp build/NewSamTemplate.yml ./NewSamTemplate.yml
+      - cat NewSamTemplate.yml
 #  post_build:
 #    commands:
 #      - echo "I'm a command in the 'post_build' phase!"
