@@ -9,9 +9,23 @@ Resources:
       Runtime: python3.6
       CodeUri: ./build/
       Events:
-        MyApi:
+        ProxylessGet:
           Type: Api
           Properties:
             Path: /
             Method: GET
-            
+        ProxylessPost:
+          Type: Api
+          Properties:
+            Path: /
+            Method: POST
+        ProxyGet:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: GET
+        ProxyPost:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: POST
