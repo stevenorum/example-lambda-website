@@ -49,4 +49,8 @@ def render(name, params={}, code=200, headers={}):
 
 def lambda_handler(event, context):
     print(event)
-    return make_response(body=json.dumps(event))
+    params = {
+        "title":"Example index page!",
+        "data_blob":"Here's the event that the lambda behind all this stuff received:\n\n" + json.dumps(event, indent=2, sort_keys=True)
+    }
+    return render(name="index.html", params=params)
