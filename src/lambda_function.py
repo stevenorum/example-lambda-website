@@ -1,4 +1,5 @@
 import boto3
+import json
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -48,3 +49,4 @@ def render(name, params={}, code=200, headers={}):
 
 def lambda_handler(event, context):
     print(event)
+    return make_response(body=json.dumps(event))
