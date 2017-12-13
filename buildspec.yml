@@ -17,6 +17,8 @@ phases:
     commands:
       - cd build
       - aws cloudformation package --template-file SamTemplate.yml --s3-bucket $S3_BUCKET --output-template-file NewSamTemplate.yml
+      - cd ..
+      - cp build/NewSamTemplate.yml ./NewSamTemplate.yml
 #  post_build:
 #    commands:
 #      - echo "I'm a command in the 'post_build' phase!"
@@ -26,5 +28,5 @@ phases:
 artifacts:
   type: zip
   files:
-    - build/NewSamTemplate.yml
+    - NewSamTemplate.yml
   discard-paths: yes
