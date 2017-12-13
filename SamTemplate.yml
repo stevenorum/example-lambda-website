@@ -5,12 +5,13 @@ Resources:
   TimeFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: index.handler
+      Handler: lambda_function.lambda_handler
       Runtime: python-3.6
-      CodeUri: ./build/
+      CodeUri: ./
       Events:
-        MyTimeApi:
+        MyApi:
           Type: Api
           Properties:
-            Path: /TimeResource
+            Path: /
             Method: GET
+            

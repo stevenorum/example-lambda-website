@@ -10,13 +10,13 @@ phases:
     commands:
       - mkdir build
       - cp -r src/* build/
-      - cp SamTemplate.yaml build/
+      - cp SamTemplate.yml build/
       - touch requirements.txt
       - pip3 install -t build/ -r requirements.txt
   build:
     commands:
       - cd build
-      - aws cloudformation package --template-file SamTemplate.yaml --s3-bucket $S3_BUCKET --output-template-file NewSamTemplate.yaml
+      - aws cloudformation package --template-file SamTemplate.yml --s3-bucket $S3_BUCKET --output-template-file NewSamTemplate.yml
 #  post_build:
 #    commands:
 #      - echo "I'm a command in the 'post_build' phase!"
@@ -26,5 +26,5 @@ phases:
 artifacts:
   type: zip
   files:
-    - build/NewSamTemplate.yaml
+    - build/NewSamTemplate.yml
   discard-paths: yes
