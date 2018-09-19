@@ -2,30 +2,13 @@ version: 0.1
 phases:
   install:
     commands:
-      - yum install -y python36-devel tree
-      - pip3 install --upgrade pip
-#      - pip3 install --upgrade setuptools
-#      - pip3 install --upgrade wheel
+      - bash scripts/install_dependencies.sh
   pre_build:
     commands:
-      - pwd
-      - mkdir build
-      - cp -r src/* build/
-      - cp SamTemplate.yml build/
-      - touch requirements.txt
-      - pip3 install -t build/ -r requirements.txt
+      - bash scripts/setup_build_dir.sh
   build:
     commands:
-      - ls -hAl
-      - aws cloudformation package --template-file SamTemplate.yml --s3-bucket $S3_BUCKET --output-template-file NewSamTemplate.yml
-      - ls -hAl
-      - cat NewSamTemplate.yml
-#  post_build:
-#    commands:
-#      - echo "I'm a command in the 'post_build' phase!"
-#  install:
-#    commands:
-#      - echo "Foo!"
+      - bash scripts/bundle_lambda.sh
 artifacts:
   type: zip
   files:
