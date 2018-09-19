@@ -31,7 +31,7 @@
         },
         "BuildImage": {
             "Type": "String",
-            "Description": "Docker build image to use for this stack.",
+            "Description": "Docker build image to use for this stack.  If none is provided, it'll default to trying to use the value exported by cetacea.  If that isn't available, I've found that 'aws/codebuild/eb-python-3.4-amazonlinux-64:2.3.2' usually works.",
             "Default": ""
         }
     },
