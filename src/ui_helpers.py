@@ -1,6 +1,7 @@
 import base64
 import json
 import os
+import traceback
 from jinja2 import Environment, FileSystemLoader
 
 env = Environment(loader=FileSystemLoader("/var/task/jinja_templates/"))
@@ -11,7 +12,8 @@ try:
         for k in data:
             os.environ[k] = data[k].strip()
 except:
-    logging.exception("Unable to add static info to the path.  Falling back to the bundled defaults.")
+    traceback.print_exc()
+    print("Unable to add static info to the path.  Falling back to the bundled defaults.")
 
 content_types = {
     "ico":"image/x-icon",
