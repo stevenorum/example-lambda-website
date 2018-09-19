@@ -30,7 +30,7 @@
                             "Path": "/{proxy+}",
                             "Method": "GET"
                         }
-                    }
+                    },
                     "ProxyPost": {
                         "Type": "Api",
                         "Properties": {
