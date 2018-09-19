@@ -14,7 +14,7 @@ cp -r src/* build/
 # Not required that we copy this over,
 # but if you have to later debug it from the source bundle,
 # this makes it easier.
-cp SamTemplate.yml build/
+cp SamTemplate.json build/
 
 if [ -e static ] ; then
     bash ${SCRIPTS}/upload_static_assets.sh build/static_config.json

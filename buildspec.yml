@@ -12,5 +12,5 @@ phases:
 artifacts:
   type: zip
   files:
-    - NewSamTemplate.yml
+    - NewSamTemplate.json
   discard-paths: yes
