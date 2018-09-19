@@ -10,4 +10,4 @@ def lambda_handler(event, context):
         "title":"Example index page!",
         "data_blob":"Here's the event that the lambda behind all this stuff received:\n\n" + json.dumps(event, indent=4, sort_keys=True)
     }
-    return render(name="index.html", params=params)
+    return render_page(name="index.html", params=params)
