@@ -30,6 +30,7 @@ class DeploymentPipelineStack(aws_cdk.Stack):
                 commands=[
                     "npm install -g aws-cdk",
                     "python -m pip install -r requirements.txt",
+                    "./scripts/build.sh",
                     "cdk synth"
                 ]
             )

@@ -9,16 +9,15 @@ mkdir -p build
 # Copy everything over to the build directory
 cp -r lambda/* build/
 
-date -z UTC +%Y/%m/%d-%H:%M:%S+00:00 > build/BUILD_TIMESTAMP
+# Store a file containing the build timestamp, because why not.
+date +%Y-%m-%dT%H:%M:%S%z >  build/BUILD_TIMESTAMP
 
-# Clean up emacs backup and lockfiles, not for any super important reason. They just annoy me.
-find build/* | grep '~$' | xargs rm
-find build/* | grep '#$' | xargs rm
-
-# The following can be handy when you want to inject stuff in CodeBuild
-# if [ ! -z "$BUILD_PARAMS" ] ; then
-#     echo "$BUILD_PARAMS" > build/extra_params.json
-# fi
+# Clean up emacs backup and lockfiles. Not for any super important reason, they just annoy me.
+# Only run it on a Mac so it doesn't clog the CodeBuild logs with pointless error messages when it doesn't find anything.
+if [ "$(uname)" = "Darwin" ]; then
+    find build/* | grep '~$' | xargs rm
+    find build/* | grep '#$' | xargs rm
+fi
 
 # Install any dependencies
 if [ -e lambda/requirements.txt ] ; then
