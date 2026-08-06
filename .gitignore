@@ -1,5 +1,9 @@
 *~
 *#
+private.sh
+
+cdk.out/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
