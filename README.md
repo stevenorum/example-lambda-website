@@ -1,6 +1,6 @@
 # Basic Python Lambda website
 
-Based on https://docs.aws.amazon.com/cdk/v2/guide/serverless-example.html
+Based on https://docs.aws.amazon.com/cdk/v2/guide/serverless-example.html and https://docs.aws.amazon.com/cdk/v2/guide/cdk-pipeline.html
 
 ## Prerequisites
 
