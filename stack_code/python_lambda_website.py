@@ -1,5 +1,8 @@
+from typing import Any, Dict, Optional, Union
 from aws_cdk import (
+    Environment,
     Stack,
+    Stage,
     aws_lambda,
     aws_apigateway,
 )
@@ -23,3 +26,12 @@ class PythonLambdaWebsiteStack(Stack):
             handler = hello_world_function,
             proxy = True,
         )
+
+    # Need to add stage for this to the deployment pipeline.
+    # https://docs.aws.amazon.com/cdk/api/v2/python/aws_cdk.pipelines/CodePipeline.html
+    # https://docs.aws.amazon.com/cdk/api/v2/python/aws_cdk/Stage.html#aws_cdk.Stage
+
+class PythonLambdaWebsiteStage(Stage):
+    def __init__(self, scope: Construct, construct_id: str, env: Union[Environment, Dict[str, Any], None]=None, **kwargs) -> None:
+        super().__init__(scope, construct_id, **kwargs)
+        self.stack = PythonLambdaWebsiteStack(self, "HelloworldCdkPythonStack", env=env)

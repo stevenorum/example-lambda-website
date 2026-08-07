@@ -17,7 +17,7 @@ class DeploymentPipelineStack(aws_cdk.Stack):
         super().__init__(scope, construct_id, **kwargs)
         # May need to add some sanitization to ensure that this pipeline name meets the CodePipeline requirements.
         pipeline_name = pipeline_name or f"{owner}-{repo}-{branch}"
-        pipeline =  CodePipeline(
+        self.pipeline =  CodePipeline(
             self, "Pipeline",
             pipeline_name=pipeline_name,
             synth=ShellStep(
