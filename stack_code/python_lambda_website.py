@@ -33,5 +33,5 @@ class PythonLambdaWebsiteStack(Stack):
 
 class PythonLambdaWebsiteStage(Stage):
     def __init__(self, scope: Construct, construct_id: str, env: Union[Environment, Dict[str, Any], None]=None, **kwargs) -> None:
-        super().__init__(scope, construct_id, **kwargs)
-        self.stack = PythonLambdaWebsiteStack(self, "HelloworldCdkPythonStack", env=env)
+        super().__init__(scope, f"{construct_id}Stage", **kwargs)
+        self.stack = PythonLambdaWebsiteStack(self, construct_id, env=env, **kwargs)

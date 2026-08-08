@@ -5,4 +5,4 @@ if [ -f private.sh ]; then
 fi
 
 scripts/build.sh && cdk synth && cdk deploy --profile $PROFILE_NAME DeploymentPipelineStack
-scripts/build.sh && cdk synth && cdk deploy --profile $PROFILE_NAME HelloworldCdkPythonStack
+# scripts/build.sh && cdk synth && cdk deploy --profile $PROFILE_NAME HelloworldCdkPythonStack
