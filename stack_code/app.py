@@ -3,11 +3,7 @@ import os
 
 import aws_cdk
 
-# from stack_code.python_lambda_website import PythonLambdaWebsiteStack
-# from stack_code.deployment_pipeline import DeploymentPipelineStack
-# from python_lambda_website import PythonLambdaWebsiteStack
 from python_lambda_website import PythonLambdaWebsiteStage
-# from python_lambda_website import PythonLambdaWebsiteStack, PythonLambdaWebsiteStage
 from deployment_pipeline import DeploymentPipelineStack
 
 OWNER = "stevenorum"
@@ -24,9 +20,8 @@ auth_token = aws_cdk.SecretValue.secrets_manager(
     json_field="codesuite_oauth"
 )
 
-pipeline_stack = DeploymentPipelineStack(app, "DeploymentPipelineStack", env=ENV, owner=OWNER, repo=REPO, branch=BRANCH, auth_token=auth_token)
+pipeline_stack = DeploymentPipelineStack(app, "DeploymentPipelineStack", env=ENV, owner=OWNER, repo=REPO, branch=BRANCH, auth_token=auth_token, stack_name=f"{REPO}-{BRANCH}-pipeline")
 
-# PythonLambdaWebsiteStack(app, "HelloworldCdkPythonStack", env=ENV)
-pipeline_stack.pipeline.add_stage(PythonLambdaWebsiteStage(pipeline_stack, "HelloworldCdkPythonStack", env=ENV))
+pipeline_stack.pipeline.add_stage(PythonLambdaWebsiteStage(pipeline_stack, "PythonLambdaWebsiteStage", env=ENV, stack_name=f"{REPO}-{BRANCH}-website"))
 
 app.synth()
