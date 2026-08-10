@@ -22,6 +22,6 @@ auth_token = aws_cdk.SecretValue.secrets_manager(
 
 pipeline_stack = DeploymentPipelineStack(app, "DeploymentPipelineStack", env=ENV, owner=OWNER, repo=REPO, branch=BRANCH, auth_token=auth_token, stack_name=f"{REPO}-{BRANCH}-pipeline")
 
-pipeline_stack.pipeline.add_stage(PythonLambdaWebsiteStage(pipeline_stack, "PythonLambdaWebsiteStage", env=ENV, stack_name=f"{REPO}-{BRANCH}-website"))
+pipeline_stack.pipeline.add_stage(PythonLambdaWebsiteStage(pipeline_stack, "PythonLambdaWebsiteStage", env=ENV, stack_name=f"{REPO}-{BRANCH}-website", url="example.drunkenrobotlabs.org/lambda-website"))
 
 app.synth()
