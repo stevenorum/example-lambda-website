@@ -33,5 +33,6 @@ class DeploymentPipelineStack(aws_cdk.Stack):
                     "./scripts/build.sh",
                     "cdk synth"
                 ]
-            )
+            ),
+            use_pipeline_role_for_actions=True
         )
